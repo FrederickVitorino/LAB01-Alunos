@@ -1,0 +1,20 @@
+body{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#formulario{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#tabela, th, td{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+td{
+    text-align: center;
+}
