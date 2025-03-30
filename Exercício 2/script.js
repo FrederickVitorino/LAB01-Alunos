@@ -16,14 +16,13 @@ class Aluno {
     }
 }
 
-function cadastrar(){
-    const valores = ['nome', 'idade', 'curso', 'NF'];
-    const aluno = {nome: '', idade: '', curso: '', NF: ''};
+function cadastrar() {
+    const nome = document.getElementById('nome').value;
+    const idade = document.getElementById('idade').value;
+    const curso = document.getElementById('curso').value;
+    const NF = document.getElementById('NF').value;
 
-    valores.forEach((valor, _) => {
-        getValor = document.getElementById(valor).value;
-        aluno[valor] = getValor;
-    });
+    const aluno = new Aluno(nome, idade, curso, NF);
 
     addAlunoTabela(aluno);
 }
@@ -32,19 +31,23 @@ function addAlunoTabela(aluno){
     const tabela = document.getElementById('tabela');
     const linha = tabela.insertRow(1);
 
-    const colunas = ['nome', 'idade', 'curso', 'NF'];
-    colunas.forEach((coluna, index) => {
+    const valores = [aluno.nome, aluno.idade, aluno.curso, aluno.NF];
+    valores.forEach((valor, index) => {
         const celula = linha.insertCell(index);
-        celula.innerHTML = aluno[coluna];
+        celula.innerHTML = valor;
     });
 
+    createButtons(linha);
+}
+
+function createButtons(linha){
     const botoes = [
         { texto: 'Editar', evento: () => editarAluno(linha) },
         { texto: 'Excluir', evento: () => excluirAluno(linha) }
     ];
 
     botoes.forEach((comando, index) => {
-        const celula = linha.insertCell(colunas.length + index);
+        const celula = linha.insertCell(4 + index);
         const botao = document.createElement('button');
         botao.type = 'button';
         botao.innerHTML = comando.texto;
